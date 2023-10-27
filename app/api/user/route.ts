@@ -14,10 +14,13 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
     try {
+        const { name, email, image } = await req.json();
+        
         const user = await prisma.user.create({
             data: {
-                name: 'powerku',
-                email: 'powerku@prisma.io',
+                name,
+                email,
+                image
             },
         })
         return NextResponse.json(user);

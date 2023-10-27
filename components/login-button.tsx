@@ -5,7 +5,7 @@ import React from 'react';
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 
 const LoginButton = () => {
-    const {data} = useSession();
+    const { data} = useSession();
 
     const onClick = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -18,6 +18,7 @@ const LoginButton = () => {
     }
     return (
         <div className="flex items-center gap-3">
+            {data?.user && <span className="text-white">{data.user.name}</span>}
             {data?.user && <Avatar>
                 <AvatarImage src={data.user.image ?? ""} alt="user image" />
                 <AvatarFallback>CN</AvatarFallback>
