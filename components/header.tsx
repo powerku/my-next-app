@@ -4,9 +4,17 @@ import React, {useEffect} from 'react';
 import LoginButton from "@/components/login-button";
 import {useSession} from "next-auth/react";
 import axios from "axios";
+import {Session} from "next-auth";
 
-const Header = () => {
+interface HeaderProps {
+    session?: Session | null;
+}
+
+const Header = ({ session }: HeaderProps) => {
     const { data } = useSession();
+
+    // console.log('data', data);
+    // console.log('session', session);
 
     useEffect( () => {
         getAndCreateUser();
@@ -48,7 +56,7 @@ const Header = () => {
 
     return (
         <div className="h-[48px] bg-black flex items-center">
-            <h1 className="text-white">powerku의 Blog</h1>
+            <h1 className="text-white">Admin</h1>
             <div className="ml-auto mr-5">
                 <LoginButton></LoginButton>
             </div>
